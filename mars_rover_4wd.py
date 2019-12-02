@@ -181,7 +181,7 @@ def arm_up():
   GPIO.output(PIN2_B1B, GPIO.LOW)
   GPIO.output(PIN3_A1A, GPIO.HIGH)
   GPIO.output(PIN3_A1B, GPIO.LOW)
-  GPIO.output(PIN3_B1A, GPIO.HIGH)
+  GPIO.output(PIN3_B1A, GPIO.LOW)
   GPIO.output(PIN3_B1B, GPIO.LOW)
 
 def arm_down():
@@ -196,9 +196,35 @@ def arm_down():
   GPIO.output(PIN3_A1A, GPIO.LOW)
   GPIO.output(PIN3_A1B, GPIO.HIGH)
   GPIO.output(PIN3_B1A, GPIO.LOW)
+  GPIO.output(PIN3_B1B, GPIO.LOW)
+
+def arm2_up():
+  GPIO.output(PIN_A1A, GPIO.LOW)
+  GPIO.output(PIN_A1B, GPIO.LOW)
+  GPIO.output(PIN_B1A, GPIO.LOW)
+  GPIO.output(PIN_B1B, GPIO.LOW)
+  GPIO.output(PIN2_A1A, GPIO.LOW)
+  GPIO.output(PIN2_A1B, GPIO.LOW)
+  GPIO.output(PIN2_B1A, GPIO.LOW)
+  GPIO.output(PIN2_B1B, GPIO.LOW)
+  GPIO.output(PIN3_A1A, GPIO.LOW)
+  GPIO.output(PIN3_A1B, GPIO.LOW)
+  GPIO.output(PIN3_B1A, GPIO.HIGH)
+  GPIO.output(PIN3_B1B, GPIO.LOW)
+
+def arm2_down():
+  GPIO.output(PIN_A1A, GPIO.LOW)
+  GPIO.output(PIN_A1B, GPIO.LOW)
+  GPIO.output(PIN_B1A, GPIO.LOW)
+  GPIO.output(PIN_B1B, GPIO.LOW)
+  GPIO.output(PIN2_A1A, GPIO.LOW)
+  GPIO.output(PIN2_A1B, GPIO.LOW)
+  GPIO.output(PIN2_B1A, GPIO.LOW)
+  GPIO.output(PIN2_B1B, GPIO.LOW)
+  GPIO.output(PIN3_A1A, GPIO.LOW)
+  GPIO.output(PIN3_A1B, GPIO.LOW)
+  GPIO.output(PIN3_B1A, GPIO.LOW)
   GPIO.output(PIN3_B1B, GPIO.HIGH)
-
-
 
 
 def main():
@@ -325,6 +351,10 @@ def main():
       move_r_ud = 1
     if axis[axis_r_ud] < -0.5:
       move_r_ud = -1
+    if axis[axis_r_lr] > 0.5:
+      move_r_lr = 1
+    if axis[axis_r_lr] < -0.5:
+      move_r_lr = -1
 
     if   (move_r_ud == -1): # arm up
       print("arm up")
@@ -332,6 +362,12 @@ def main():
     elif (move_r_ud ==  1): # arm down 
       print("arm down")
       arm_down()
+    if   (move_r_lr == -1): # arm2 up
+      print("arm2 up")
+      arm2_up()
+    elif (move_r_lr ==  1): # arm2 down
+      print("arm2 down")
+      arm2_down()
     else:
       if   (move_l_lr ==  0) and (move_l_ud ==  0): # 0  0  nop
         print("stop")
